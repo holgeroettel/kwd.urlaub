@@ -58,6 +58,16 @@ public class Login extends JPanel {
 		});
 		this.add(loginButton);
 		loginButton.setBounds(400, 301, 150, 26);
+
+		JButton beenden = new JButton("Beenden");
+		beenden.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		this.add(beenden);
+		beenden.setBounds(400, 327, 150, 26);
 	}
 
 	public void login(String nr, String pw) {

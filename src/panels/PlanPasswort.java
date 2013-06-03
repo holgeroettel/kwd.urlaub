@@ -26,7 +26,7 @@ public class PlanPasswort extends JPanel {
 	private Inhalt inhalt;
 	private JPasswordField feldPw = new JPasswordField(13);
 	private JPasswordField feldPw2 = new JPasswordField(13);
-	private boolean boolPw = false, boolPw2 = false;
+	private boolean boolPw = true, boolPw2 = true;
 	private PersNrVerifier inputVeri = new PersNrVerifier();
 
 	public PlanPasswort(Inhalt i) {
@@ -92,11 +92,11 @@ public class PlanPasswort extends JPanel {
 		btnBack.setBounds(400, 327, 160, 26);
 
 		this.add(lblPw);
+		this.add(btnBack);
 		this.add(feldPw);
 		this.add(lblPw2);
 		this.add(feldPw2);
 		this.add(btnCheck);
-		this.add(btnBack);
 	}
 
 	public void open() {
@@ -110,7 +110,7 @@ public class PlanPasswort extends JPanel {
 		return boolPw
 				&& boolPw2
 				&& String.valueOf(feldPw.getPassword()).equals(
-						String.valueOf(feldPw2.getPassword()));
+						String.valueOf(feldPw2.getPassword())) && !String.valueOf(feldPw.getPassword()).isEmpty();
 	}
 
 	class PersNrVerifier extends InputVerifier {
