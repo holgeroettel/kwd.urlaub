@@ -70,8 +70,8 @@ public class PlanUrlaubGenehmigen extends JPanel {
 		this.add(scrollPane);
 		this.add(back);
 
-		scrollPane.setBounds(0, 0, 1024, 718);
-		back.setBounds(512, 723, 150, 26);
+		scrollPane.setBounds(0, 0, 1024, 698);
+		back.setBounds(512, 703, 150, 26);
 	}
 
 	private void initPersonUrlaubMap() {

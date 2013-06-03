@@ -61,10 +61,28 @@ public class PlanUrlaub extends JPanel {
 		typ = Urlaub.TYPURLAUB;
 		for (Urlaub u : inhalt.initPersonenUrlaub(inhalt.getPerson().getID())
 				.values()) {
-			UrlaubMitTyp urlaub = new UrlaubMitTyp(new Integer(u.getID()),
-					u.getPerson(), u.getSqlTag(), u.getStatus(), u.getJahr(),
-					u.getTyp());
-			tableModelAll.addChange(urlaub);
+			// nur dieses Jahr anzeigen
+			if (Integer.parseInt(u.getSqlTag().substring(0, 4)) == inhalt.realYear) {
+				// alles außer Stunden anzeigen
+				if (!u.getTyp().equals(Urlaub.TYPSTUNDEN))
+					;
+				// Stunden nur ab heute anzeigen ->
+				// Monate größer als heute
+				else if (Integer.parseInt(u.getSqlTag().substring(5, 7)) > (inhalt.realMonth + 1))
+					;
+				// Monat gleich && Tag größer als heute
+				else if (Integer.parseInt(u.getSqlTag().substring(5, 7)) == (inhalt.realMonth + 1)
+						&& Integer.parseInt(u.getSqlTag().substring(8)) > inhalt.realDay)
+					;
+				// Sonst raus
+				else
+					continue;
+
+				UrlaubMitTyp urlaub = new UrlaubMitTyp(new Integer(u.getID()),
+						u.getPerson(), u.getSqlTag(), u.getStatus(),
+						u.getJahr(), u.getTyp());
+				tableModelAll.addChange(urlaub);
+			}
 		}
 		myFont = new Font("", Font.PLAIN, 24);
 		tblCalendar = initButtons();
@@ -108,14 +126,14 @@ public class PlanUrlaub extends JPanel {
 		toggle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (toggle.getText().equals("Urlaub")) {
-					toggle.setText("Stunden");
+				if (toggle.getText().equals(Urlaub.URLAUB)) {
+					toggle.setText(Urlaub.STUNDEN);
 					typ = Urlaub.TYPSTUNDEN;
-				} else if (toggle.getText().equals("Stunden")) {
-					toggle.setText("Sonderurlaub");
+				} else if (toggle.getText().equals(Urlaub.STUNDEN)) {
+					toggle.setText(Urlaub.SONDER);
 					typ = Urlaub.TYPSONDER;
 				} else {
-					toggle.setText("Urlaub");
+					toggle.setText(Urlaub.URLAUB);
 					typ = Urlaub.TYPURLAUB;
 				}
 			}
@@ -215,7 +233,7 @@ public class PlanUrlaub extends JPanel {
 		for (Integer row = 0; row < 6; row++) {
 			for (Integer column = 0; column < 7; column++) {
 				btnCalendar neuerButton = new btnCalendar(row, column);
-				neuerButton.setMargin(new Insets(2, 1, 2, 1));
+				neuerButton.setMargin(new Insets(2, 0, 2, 0));
 				neuerButton.setFont(myFont);
 				buttons.put(row.toString() + column.toString(), neuerButton);
 			}
@@ -225,13 +243,11 @@ public class PlanUrlaub extends JPanel {
 
 	private void refreshCalendar(int month, int year) {
 		// Variables
-		String[] months = { "Januar", "Februar", "März", "April", "Mai",
-				"Juni", "Juli", "August", "September", "Oktober", "November",
-				"Dezember" };
+		
 		int lastOfMonth, startOfMonth; // Number Of Days, Start Of Month
 
 		// Allow/disallow buttons
-		lblMonth.setText(months[month]); // Refresh the month label (at the top)
+		lblMonth.setText(Inhalt.months[month]); // Refresh the month label (at the top)
 
 		// Get first day of month and number of days
 		Calendar cal = Calendar.getInstance();

@@ -55,6 +55,10 @@ public class Inhalt extends JFrame {
 	private PlanAuswertung auswertung = null;
 	private PlanPersonen personal;
 
+	public static final String[] months = { "Januar", "Februar", "März",
+			"April", "Mai", "Juni", "Juli", "August", "September", "Oktober",
+			"November", "Dezember" };
+
 	public Inhalt() {
 		super("Urlaubsplaner");
 		this.setPreferredSize(new Dimension(1024, 768));

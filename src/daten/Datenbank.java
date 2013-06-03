@@ -19,10 +19,9 @@ public class Datenbank {
 	private Map<String, Person> personen;
 	private Map<String, Abteilung> abteilungen;
 	private Map<String, Urlaub> urlaubstage;
-	// private Map<String, Set<String>> changedGenehmigt;
 	private Map<String, Gruppe> gruppen;
 	private ArrayList<Integer> freieID;
-	private Set<String> admins, ferien;// , changedBeantragt;
+	private Set<String> admins, ferien;
 	private int letzteID;
 	private String jahr;
 	private String lastLogin;
@@ -32,8 +31,6 @@ public class Datenbank {
 		this.personen = new TreeMap<String, Person>();
 		this.abteilungen = new TreeMap<String, Abteilung>();
 		this.urlaubstage = new TreeMap<String, Urlaub>();
-		// this.changedGenehmigt = new TreeMap<String, Set<String>>();
-		// this.changedBeantragt = new TreeSet<String>();
 		this.gruppen = new TreeMap<String, Gruppe>();
 		this.admins = new TreeSet<String>();
 		this.ferien = new TreeSet<String>();

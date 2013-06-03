@@ -2,8 +2,11 @@ package daten;
 
 public class Urlaub implements Comparable<Urlaub>, DatenInterface<Urlaub>{
 	public static final String TYPURLAUB = "U";
-	public static final String TYPSTUNDEN = "S";
-	public static final String TYPSONDER = "O";
+	public static final String TYPSTUNDEN = "G";
+	public static final String TYPSONDER = "S";
+	public static final String URLAUB = "Urlaub";
+	public static final String STUNDEN = "Gleitzeit";
+	public static final String SONDER = "Sonderurlaub";
 	private Integer id;
 	private String person;
 	private String sqlTag;
@@ -20,6 +23,14 @@ public class Urlaub implements Comparable<Urlaub>, DatenInterface<Urlaub>{
 	 *            ein Kalendertag im yyyy-MM-dd Format
 	 * @param s
 	 *            ein Status
+	 */
+	/**
+	 * @param i eine ID
+	 * @param p die Personalnummer
+	 * @param t der Kalendertag in yyyy-MM-dd
+	 * @param s ein Status (1-beantragt, 2-genehmigt, 3-abgelehnt)
+	 * @param j das Beantragungsjahr
+	 * @param typ der Urlaubs
 	 */
 	public Urlaub(Integer i, String p, String t, Integer s, int j, String typ) {
 		this.id = i;

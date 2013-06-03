@@ -13,7 +13,7 @@ public class UrlaubMitTyp extends Urlaub{
 			text = "Urlaub: ";
 			break;
 		case TYPSTUNDEN:
-			text = "Stunden: ";
+			text = "Gleit: ";
 			break;
 		case TYPSONDER:
 			text = "Sonder: ";
