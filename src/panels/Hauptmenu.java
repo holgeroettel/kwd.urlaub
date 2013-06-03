@@ -98,7 +98,7 @@ public class Hauptmenu extends JPanel {
 			liste.add(personen);
 		}
 
-		JButton pass = new JButton("Passwort ändern");
+		JButton pass = new JButton("PIN ändern");
 		pass.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

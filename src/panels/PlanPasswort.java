@@ -22,7 +22,7 @@ import main.Inhalt;
 @SuppressWarnings("serial")
 public class PlanPasswort extends JPanel {
 	public final static String CARDNAME = "password";
-	
+
 	private Inhalt inhalt;
 	private JPasswordField feldPw = new JPasswordField(13);
 	private JPasswordField feldPw2 = new JPasswordField(13);
@@ -34,8 +34,8 @@ public class PlanPasswort extends JPanel {
 		this.inhalt = i;
 		JButton btnCheck = new JButton("Bestätigen");
 		JButton btnBack = new JButton("Zurück");
-		JLabel lblPw = new JLabel("Neues Kennwort: ");
-		JLabel lblPw2 = new JLabel("Kennwort wiederholen: ");
+		JLabel lblPw = new JLabel("Neuer PIN: ");
+		JLabel lblPw2 = new JLabel("PIN wiederholen: ");
 
 		feldPw.setInputVerifier(inputVeri);
 		feldPw2.setInputVerifier(inputVeri);
@@ -45,7 +45,7 @@ public class PlanPasswort extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (!verifyPw()) {
 					JOptionPane.showMessageDialog(null,
-							"Geben sie bitte zwei gleiche Kennwörte ein.",
+							"Wiederholen Sie bitte den PIN.",
 							"Ungleich", JOptionPane.ERROR_MESSAGE);
 					return;
 				} else {
@@ -68,7 +68,7 @@ public class PlanPasswort extends JPanel {
 						feldPw2.setBackground(Color.WHITE);
 						boolPw2 = false;
 						JOptionPane.showMessageDialog(null,
-								"Ihr Kennwort wurde erfolgreich geändert.",
+								"Ihr PIN wurde erfolgreich geändert.",
 								"Erfolg", JOptionPane.INFORMATION_MESSAGE);
 					} catch (SQLException e1) {
 						System.out.println(e1.getMessage());
@@ -118,8 +118,7 @@ public class PlanPasswort extends JPanel {
 		public boolean verify(JComponent input) {
 			if (input == feldPw) {
 				String s = String.valueOf(feldPw.getPassword());
-				if (s.length() > 5 && s.length() < 21
-						&& s.matches("^[\\p{L}0-9]*$")) {
+				if (s.length() == 4 && s.matches("[0-9]*")) {
 					feldPw.setBackground(Color.GREEN);
 					boolPw = true;
 					return true;
@@ -129,14 +128,13 @@ public class PlanPasswort extends JPanel {
 					JOptionPane
 							.showMessageDialog(
 									null,
-									"Geben Sie bitte eine Alphanumerischen String von mindestens sechs, maximal aber 20 Zeichen an.",
-									"Kein Kennwort", JOptionPane.ERROR_MESSAGE);
+									"Geben Sie bitte eine PIN (vier Zahlen) an.",
+									"PIN", JOptionPane.ERROR_MESSAGE);
 					return false;
 				}
 			} else if (input == feldPw2) {
 				String s = String.valueOf(feldPw2.getPassword());
-				if (s.length() > 5 && s.length() < 21
-						&& s.matches("^[\\p{L}0-9]*$")) {
+				if (s.length() == 4 && s.matches("[0-9]*")) {
 					feldPw2.setBackground(Color.GREEN);
 					boolPw2 = true;
 					return true;
@@ -146,8 +144,8 @@ public class PlanPasswort extends JPanel {
 					JOptionPane
 							.showMessageDialog(
 									null,
-									"Geben Sie bitte eine Alphanumerischen String von mindestens sechs, maximal aber 20 Zeichen an.",
-									"Kein Kennwort", JOptionPane.ERROR_MESSAGE);
+									"Geben Sie bitte nur vier Zahlen ein.",
+									"PIN", JOptionPane.ERROR_MESSAGE);
 					return false;
 				}
 			} else
