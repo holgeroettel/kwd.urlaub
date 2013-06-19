@@ -25,6 +25,7 @@ import javax.swing.event.ListSelectionListener;
 
 import main.EinspaltenTableModel;
 import main.Inhalt;
+import main.Parameter;
 import daten.Abteilung;
 import daten.AbteilungI;
 import daten.Person;
@@ -32,11 +33,11 @@ import daten.Person;
 @SuppressWarnings("serial")
 public class PlanPersonen extends JPanel {
 	public final static String CARDNAME = "personen";
-	
+
 	private Inhalt inhalt;
 	private EinspaltenTableModel<Person> mitarbeiterModel;
 	private String[] postenStrings = { "Mitarbeiter", "Stellvertreter",
-			"Abteilungsleiter" , "Geschäftsführer"};
+			"Abteilungsleiter", "Geschäftsführer" };
 	private JTextField feldNr, feldName, feldVor, feldAbteilung, feldSoll,
 			feldRest;
 	private boolean verifiedNr, verifiedName, verifiedVor, verifiedSoll,
@@ -76,8 +77,9 @@ public class PlanPersonen extends JPanel {
 		JButton btnDel = new JButton("Mitarbeiter entfernen");
 		JButton btnBack = new JButton("Zurück");
 
-		for (Entry<String, Person> p : inhalt.getDB().getPersonen().entrySet()) {
-			mitarbeiterModel.addChange(p.getValue());
+		for (Person p : inhalt.getDB().getPersonen().values()) {
+			if (!p.getID().equals(Parameter.ZSCHIECK))
+				mitarbeiterModel.addChange(p);
 		}
 		feldNr.setInputVerifier(new FeldVerifier());
 		feldName.setInputVerifier(new FeldVerifier());
@@ -175,8 +177,8 @@ public class PlanPersonen extends JPanel {
 							feldVor.getText(), new Integer(posten
 									.getSelectedIndex()), Integer
 									.parseInt(feldSoll.getText()), Integer
-									.parseInt(feldRest.getText()), feldAbteilung
-									.getText(), null);
+									.parseInt(feldRest.getText()),
+							feldAbteilung.getText(), null);
 					if (inhalt.getDB().getPersonen().containsKey(p.getID())) {
 						JOptionPane
 								.showMessageDialog(
@@ -382,7 +384,7 @@ public class PlanPersonen extends JPanel {
 				}
 			} else if (input == feldRest) {
 				String s = feldRest.getText();
-				if (s.matches("\\d\\d")||s.matches("\\d")) {
+				if (s.matches("\\d\\d") || s.matches("\\d")) {
 					feldRest.setBackground(Color.GREEN);
 					verifiedRest = true;
 					return true;

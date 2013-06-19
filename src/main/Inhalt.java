@@ -61,7 +61,7 @@ public class Inhalt extends JFrame {
 
 	public Inhalt() {
 		super("Urlaubsplaner");
-		this.setPreferredSize(new Dimension(1024, 768));
+		this.setPreferredSize(new Dimension(java.awt.Toolkit.getDefaultToolkit().getScreenSize().width, java.awt.Toolkit.getDefaultToolkit().getScreenSize().height));
 		Calendar cal = Calendar.getInstance(); // Create calendar
 		realDay = cal.get(Calendar.DAY_OF_MONTH);
 		realMonth = cal.get(Calendar.MONTH); // Get month
@@ -70,7 +70,6 @@ public class Inhalt extends JFrame {
 		this.inhalt = (JPanel) this.getContentPane();
 		this.inhalt.setLayout(new CardLayout());
 		cl = (CardLayout) (inhalt.getLayout());
-		screenWidth = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 		createLogin();
 		this.pack();
 		this.setVisible(true);

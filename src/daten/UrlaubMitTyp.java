@@ -1,14 +1,15 @@
 package daten;
 
-public class UrlaubMitTyp extends Urlaub{
+public class UrlaubMitTyp extends Urlaub {
 
-	public UrlaubMitTyp(Integer i, String p, String t, Integer s, int j, String typ) {
+	public UrlaubMitTyp(Integer i, String p, String t, Integer s, int j,
+			String typ) {
 		super(i, p, t, s, j, typ);
 	}
-	
-	public String getData(){
+
+	public String getData() {
 		String text;
-		switch(getTyp()){
+		switch (getTyp()) {
 		case TYPURLAUB:
 			text = "Urlaub: ";
 			break;
@@ -21,7 +22,8 @@ public class UrlaubMitTyp extends Urlaub{
 		default:
 			text = "";
 		}
-		return text + getSqlTag();
+		String[] help = getSqlTag().split("-");
+		return text + help[2] + "." + help[1] + "." + help[0];
 	}
 
 }

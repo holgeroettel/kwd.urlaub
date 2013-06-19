@@ -96,8 +96,8 @@ public class PlanUrlaubGenehmigen extends JPanel {
 		int currentX = 0;
 
 		// Local
-		GregorianCalendar cal = new GregorianCalendar(year, 0, 1);
-		int month = -1;
+		GregorianCalendar cal = new GregorianCalendar(year-1, 0, 1);
+		int month = -13;
 		while (month < 15) {
 			if (cal.get(GregorianCalendar.DAY_OF_MONTH) == 1)
 				++month;

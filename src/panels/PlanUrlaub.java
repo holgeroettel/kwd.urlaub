@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -118,10 +119,14 @@ public class PlanUrlaub extends JPanel {
 				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		JLabel lblRest = new JLabel("Resturlaub:");
-		JButton commit = new JButton("Bestätigen");
+		JButton commit = new JButton("Beantragen");
 		JButton btnPrev = new JButton("<<");
 		JButton btnNext = new JButton(">>");
 		JButton beenden = new JButton("Zurück");
+		
+		JLabel lblDescription0 = new JLabel("Beantragt", new ImageIcon("status0.jpg"), SwingConstants.LEFT);
+		JLabel lblDescription1 = new JLabel("Genehmigt", new ImageIcon("status1.jpg"), SwingConstants.LEFT);
+		JLabel lblDescription2 = new JLabel("Abgelehnt", new ImageIcon("status2.jpg"), SwingConstants.LEFT);
 
 		toggle.addActionListener(new ActionListener() {
 			@Override
@@ -169,6 +174,9 @@ public class PlanUrlaub extends JPanel {
 		this.add(nummerLabel);
 		this.add(tabellenPane);
 		this.add(tabellenPane1);
+		this.add(lblDescription0);
+		this.add(lblDescription1);
+		this.add(lblDescription2);
 		this.add(commit);
 		this.add(beenden);
 		for (Entry<String, btnCalendar> b : tblCalendar.entrySet()) {
@@ -190,8 +198,11 @@ public class PlanUrlaub extends JPanel {
 		btnNext.setBounds(475, 119, 75, 26);
 		tabellenPane1.setBounds(63, 177, 150, 314);
 		tabellenPane.setBounds(587, 177, 150, 314);
-		commit.setBounds(250, 489, 150, 26);
-		beenden.setBounds(400, 489, 150, 26);
+		lblDescription0.setBounds(250, 489, 100, 26);
+		lblDescription1.setBounds(350, 489, 100, 26);
+		lblDescription2.setBounds(450, 489, 100, 26);
+		commit.setBounds(250, 528, 150, 26);
+		beenden.setBounds(400, 528, 150, 26);
 
 		for (Entry<String, btnCalendar> b : this.tblCalendar.entrySet()) {
 			btnCalendar btnHelp = b.getValue();

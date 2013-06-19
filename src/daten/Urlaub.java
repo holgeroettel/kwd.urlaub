@@ -71,7 +71,8 @@ public class Urlaub implements Comparable<Urlaub>, DatenInterface<Urlaub>{
 
 	@Override
 	public String getData() {
-		return sqlTag;
+		String[] help = getSqlTag().split("-");
+		return help[2] + "." + help[1] + "." + help[0];
 	}
 
 	@Override

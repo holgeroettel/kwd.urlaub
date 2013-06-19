@@ -2,6 +2,8 @@ package panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,11 +21,13 @@ import main.Inhalt;
 import daten.Person;
 
 @SuppressWarnings("serial")
-public class Login extends JPanel {
+public class Login extends JPanel implements KeyListener{
 	public final static String CARDNAME = "login";
-
-	private Inhalt inhalt;
-	private Person person = null;
+	
+	Inhalt inhalt;
+	Person person = null;
+	JPasswordField pwFeld;
+	JTextField nrFeld;
 
 	public Login(Inhalt i) {
 		super(null);
@@ -37,7 +41,8 @@ public class Login extends JPanel {
 		this.add(nrLabel);
 		nrLabel.setBounds(250, 249, 150, 26);
 
-		final JTextField nrFeld = new JTextField(6);
+		nrFeld = new JTextField(6);
+		nrFeld.addKeyListener(this);
 		this.add(nrFeld);
 		nrFeld.setBounds(400, 249, 150, 26);
 
@@ -45,7 +50,8 @@ public class Login extends JPanel {
 		this.add(pwLabel);
 		pwLabel.setBounds(250, 275, 150, 26);
 
-		final JPasswordField pwFeld = new JPasswordField(8);
+		pwFeld = new JPasswordField(8);
+		pwFeld.addKeyListener(this);
 		this.add(pwFeld);
 		pwFeld.setBounds(400, 275, 150, 26);
 
@@ -130,6 +136,24 @@ public class Login extends JPanel {
 			return false;
 		}// end catch
 		return result;
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {	
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (e.getSource() == pwFeld
+				&& e.getKeyCode() == KeyEvent.VK_ENTER)
+			login(nrFeld.getText(), String.valueOf(pwFeld.getPassword()));
+		if ((e.getSource() == pwFeld || e.getSource() == nrFeld)
+				&& e.getKeyCode() == KeyEvent.VK_ESCAPE)
+			System.exit(0);
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {		
 	}
 
 }

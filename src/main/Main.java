@@ -4,6 +4,8 @@ package main;
  * Unsere Startklasse. Die Reihenfolge lautet: 1. Login 2. Datenbank befeuern 3.
  * Hauptmenü aufbauen
  * 
+ * Wichtig: Sachbearbeiter aus P zu Admin machen
+ * 
  * @author oettel
  * 
  */
